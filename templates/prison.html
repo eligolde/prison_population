@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{ the_title }}</title>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+	{{ bootstrap.load_css() }}
+
+	<style>
+		body { background: #c4aead; }
+		p {font-size: 1.2rem;}
+	</style>
+
+</head>
+
+<body>
+
+		<div class="container">
+		  <div class="row">
+		    <div class="col-md-8 col-lg-6 mx-md-auto mx-lg-auto">
+
+					<h1 class="mt-5 display-3 text-dark text-center">{{ the_state.state }}</h1>
+
+					<p class='lead text-dark'> The incarceration rate per 100,000 people in {{the_state.state}} is {{the_state.rate_2021}}, which ranks
+
+						{% if (the_state.id == 24) %}
+						1st
+						{% elif (the_state.id == 18) %}
+						2nd
+						{% elif (the_state.id == 4) %}
+						3rd
+						{% elif (the_state.id == 36) %}
+						4th
+						{% elif (the_state.id == 3) %}
+						5th
+						{% elif (the_state.id == 12) %}
+						6th
+						{% elif (the_state.id == 43) %}
+						7th
+						{% elif (the_state.id == 10) %}
+						8th
+						{% elif (the_state.id == 17) %}
+						9th
+						{% elif (the_state.id == 26) %}
+						10th
+						{% elif (the_state.id == 1) %}
+						11th
+						{% elif (the_state.id == 35) %}
+						12th
+						{% elif (the_state.id == 25) %}
+						13th
+						{% elif (the_state.id == 41) %}
+						14th
+						{% elif (the_state.id == 9) %}
+						15th
+						{% elif (the_state.id == 50) %}
+						16th
+						{% elif (the_state.id == 46) %}
+						17th
+						{% elif (the_state.id == 14) %}
+						18th
+						{% elif (the_state.id == 48) %}
+						19th
+						{% elif (the_state.id == 28) %}
+						20th
+						{% elif (the_state.id == 22) %}
+						21st
+						{% elif (the_state.id == 49) %}
+						22nd
+						{% elif (the_state.id == 42) %}
+						23rd
+						{% elif (the_state.id == 37) %}
+						24th
+						{% elif (the_state.id == 40) %}
+						25th
+						{% elif (the_state.id == 38) %}
+						26th
+						{% elif (the_state.id == 16) %}
+						27th
+						{% elif (the_state.id == 27) %}
+						28th
+						{% elif (the_state.id == 8) %}
+						29th
+						{% elif (the_state.id == 6) %}
+						30th
+						{% elif (the_state.id == 15) %}
+						31st
+						{% elif (the_state.id == 33) %}
+						32nd
+						{% elif (the_state.id == 5) %}
+						33rd
+						{% elif (the_state.id == 20) %}
+						34th
+						{% elif (the_state.id == 31) %}
+						35th
+						{% elif (the_state.id == 13) %}
+						36th
+						{% elif (the_state.id == 34) %}
+						37th
+						{% elif (the_state.id == 2) %}
+						38th
+						{% elif (the_state.id == 11) %}
+						39th
+						{% elif (the_state.id == 47) %}
+						40th
+						{% elif (the_state.id == 44) %}
+						41st
+						{% elif (the_state.id == 7) %}
+						42nd
+						{% elif (the_state.id == 32) %}
+						43rd
+						{% elif (the_state.id == 29) %}
+						44th
+						{% elif (the_state.id == 23) %}
+						45th
+						{% elif (the_state.id == 30) %}
+						46th
+						{% elif (the_state.id == 45) %}
+						47th
+						{% elif (the_state.id == 39) %}
+						48th
+						{% elif (the_state.id == 19) %}
+						49th
+						{% elif (the_state.id == 21) %}
+						last
+
+
+						{% endif %}
+
+					among all states. Scroll below to discover more information on incarceration rates and prison populations in the state.</p>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<figure class="highcharts-figure">
+						<div id="container"></div>
+						<p class="highcharts-description">
+							The line chart above and date table below show prison population data in {{the_state.state}} from 2000 - 2021 by total, male and female populations.
+						</p>
+
+    <table id="datatable">
+        <thead>
+            <tr>
+							<th></th>
+							<th>Total Prison Population</th>
+							<th>Male Population</th>
+							<th>Female Population</th>
+            </tr>
+					</thead>
+ 				 <tbody>
+						 <tr>
+								 <th>2000</th>
+								 <td>{{the_state.total_2000}}</td>
+								 <td>{{the_state.female_2000}}</td>
+								 <td>{{the_state.male_2000}}</td>
+						 </tr>
+						 <tr>
+ 								 <th>2001</th>
+ 								 <td>{{the_state.total_2001}}</td>
+								 <td>{{the_state.female_2001}}</td>
+ 								 <td>{{the_state.male_2001}}</td>
+ 						 </tr>
+						 <tr>
+ 								 <th>2002</th>
+ 								 <td>{{the_state.total_2002}}</td>
+								 <td>{{the_state.female_2002}}</td>
+ 								 <td>{{the_state.male_2002}}</td>
+ 						 </tr>
+						 <tr>
+ 								 <th>2003</th>
+ 								 <td>{{the_state.total_2003}}</td>
+ 								 <td>{{the_state.male_2003}}</td>
+ 								 <td>{{the_state.female_2003}}</td>
+ 						 </tr>
+						 <tr>
+ 								 <th>2004</th>
+ 								 <td>{{the_state.total_2004}}</td>
+								 <td>{{the_state.female_2004}}</td>
+ 								 <td>{{the_state.male_2004}}</td>
+ 						 </tr>
+						 <tr>
+ 								 <th>2005</th>
+ 								 <td>{{the_state.total_2005}}</td>
+								 <td>{{the_state.female_2005}}</td>
+ 								 <td>{{the_state.male_2005}}</td>
+ 						 </tr>
+						 <tr>
+ 								 <th>2006</th>
+ 								 <td>{{the_state.total_2006}}</td>
+ 								 <td>{{the_state.male_2006}}</td>
+ 								 <td>{{the_state.female_2006}}</td>
+ 						 </tr>
+						 <tr>
+								 <th>2007</th>
+								 <td>{{the_state.total_2007}}</td>
+								 <td>{{the_state.male_2007}}</td>
+								 <td>{{the_state.female_2007}}</td>
+						 </tr>
+						 <tr>
+								 <th>2008</th>
+								 <td>{{the_state.total_2008}}</td>
+								 <td>{{the_state.male_2008}}</td>
+								 <td>{{the_state.female_2008}}</td>
+						 </tr>
+						 <tr>
+								 <th>2009</th>
+								 <td>{{the_state.total_2009}}</td>
+								 <td>{{the_state.male_2009}}</td>
+								 <td>{{the_state.female_2009}}</td>
+						 </tr>
+						 <tr>
+								 <th>2010</th>
+								 <td>{{the_state.total_2010}}</td>
+								 <td>{{the_state.male_2010}}</td>
+								 <td>{{the_state.female_2010}}</td>
+						 </tr>
+						 <tr>
+								 <th>2011</th>
+								 <td>{{the_state.total_2011}}</td>
+								 <td>{{the_state.male_2011}}</td>
+								 <td>{{the_state.female_2011}}</td>
+						 </tr>
+						 <tr>
+								 <th>2012</th>
+								 <td>{{the_state.total_2012}}</td>
+								 <td>{{the_state.male_2012}}</td>
+								 <td>{{the_state.female_2012}}</td>
+						 </tr>
+						 <tr>
+								 <th>2013</th>
+								 <td>{{the_state.total_2013}}</td>
+								 <td>{{the_state.male_2013}}</td>
+								 <td>{{the_state.female_2013}}</td>
+						 </tr>
+						 <tr>
+								 <th>2014</th>
+								 <td>{{the_state.total_2014}}</td>
+								 <td>{{the_state.male_2014}}</td>
+								 <td>{{the_state.female_2014}}</td>
+						 </tr>
+						 <tr>
+								 <th>2015</th>
+								 <td>{{the_state.total_2015}}</td>
+								 <td>{{the_state.male_2015}}</td>
+								 <td>{{the_state.female_2015}}</td>
+						 </tr>
+						 <tr>
+								 <th>2016</th>
+								 <td>{{the_state.total_2016}}</td>
+								 <td>{{the_state.male_2016}}</td>
+								 <td>{{the_state.female_2016}}</td>
+						 </tr>
+						 <tr>
+								 <th>2017</th>
+								 <td>{{the_state.total_2017}}</td>
+								 <td>{{the_state.male_2017}}</td>
+								 <td>{{the_state.female_2017}}</td>
+						 </tr>
+						 <tr>
+								 <th>2018</th>
+								 <td>{{the_state.total_2018}}</td>
+								 <td>{{the_state.male_2018}}</td>
+								 <td>{{the_state.female_2018}}</td>
+						 </tr>
+						 <tr>
+								 <th>2019</th>
+								 <td>{{the_state.total_2019}}</td>
+								 <td>{{the_state.male_2019}}</td>
+								 <td>{{the_state.female_2019}}</td>
+						 </tr>
+						 <tr>
+								 <th>2020</th>
+								 <td>{{the_state.total_2020}}</td>
+								 <td>{{the_state.male_2020}}</td>
+								 <td>{{the_state.female_2020}}</td>
+						 </tr>
+ 						 <tr>
+ 								 <th>2021</th>
+ 								 <td>{{the_state.total_2021}}</td>
+ 								 <td>{{the_state.male_2021}}</td>
+ 								 <td>{{the_state.female_2021}}</td>
+ 						 </tr>
+        </tbody>
+    </table>
+</figure>
+</div>
+
+<div class="col-md-6">
+<figure class="highcharts-figure">
+	<div id="rate_container"></div>
+	<p class="highcharts-description">The line chart above and data table below depict incarceration rates per 100,000 people in {{the_state.state}} from 2000 - 2021.</p>
+	<table id="ratetable">
+			<thead>
+					<tr>
+						<th></th>
+						<th>Incarceration Rate per 100,000</th>
+					</tr>
+				</thead>
+			 <tbody>
+					 <tr>
+							 <th>2000</th>
+							 <td>{{the_state.rate_2000}}</td>
+					 </tr>
+					 <tr>
+							 <th>2001</th>
+							 <td>{{the_state.rate_2001}}</td>
+					 </tr>
+					 <tr>
+							 <th>2002</th>
+							 <td>{{the_state.rate_2002}}</td>
+					 </tr>
+					 <tr>
+							 <th>2003</th>
+							 <td>{{the_state.rate_2003}}</td>
+					 </tr>
+					 <tr>
+							 <th>2004</th>
+							 <td>{{the_state.rate_2004}}</td>
+					 </tr>
+					 <tr>
+							 <th>2005</th>
+							 <td>{{the_state.rate_2005}}</td>
+					 </tr>
+					 <tr>
+							 <th>2006</th>
+							 <td>{{the_state.rate_2006}}</td>
+					 </tr>
+					 <tr>
+							 <th>2007</th>
+							 <td>{{the_state.rate_2007}}</td>
+					 </tr>
+					 <tr>
+							 <th>2008</th>
+							 <td>{{the_state.rate_2008}}</td>
+					 </tr>
+					 <tr>
+							 <th>2009</th>
+							 <td>{{the_state.rate_2009}}</td>
+					 </tr>
+					 <tr>
+							 <th>2010</th>
+							 <td>{{the_state.rate_2010}}</td>
+					 </tr>
+					 <tr>
+							 <th>2011</th>
+							 <td>{{the_state.rate_2011}}</td>
+					 </tr>
+					 <tr>
+							 <th>2012</th>
+							 <td>{{the_state.rate_2012}}</td>
+					 </tr>
+					 <tr>
+							 <th>2013</th>
+							 <td>{{the_state.rate_2013}}</td>
+					 </tr>
+					 <tr>
+							 <th>2014</th>
+							 <td>{{the_state.rate_2014}}</td>
+					 </tr>
+					 <tr>
+							 <th>2015</th>
+							 <td>{{the_state.rate_2015}}</td>
+					 </tr>
+					 <tr>
+							 <th>2016</th>
+							 <td>{{the_state.rate_2016}}</td>
+					 </tr>
+					 <tr>
+							 <th>2017</th>
+							 <td>{{the_state.rate_2017}}</td>
+					 </tr>
+					 <tr>
+							 <th>2018</th>
+							 <td>{{the_state.rate_2018}}</td>
+					 </tr>
+					 <tr>
+							 <th>2019</th>
+							 <td>{{the_state.rate_2019}}</td>
+					 </tr>
+					 <tr>
+							 <th>2020</th>
+							 <td>{{the_state.rate_2020}}</td>
+					 </tr>
+					 <tr>
+							 <th>2021</th>
+							 <td>{{the_state.rate_2021}}</td>
+					 </tr>
+			</tbody>
+	</table>
+</figure>
+</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+<figure class="highcharts-figure">
+	<div id="pie_container"></div>
+	<p>The pie chart above and data table below depict demographic makeup in {{the_state.state}} for each racial group as a percentage of the state's total prison population in 2021.</p>
+	<table id="pietable">
+			<thead>
+					<tr>
+						<th></th>
+						<th>Demographic Makeup of Prisons by Race (%) in 2021 </th>
+					</tr>
+				</thead>
+			 <tbody>
+					 <tr>
+							 <th>White</th>
+							 <td>{{the_state.white_pris_pop_2021}}</td>
+					 </tr>
+					 <tr>
+							 <th>Black</th>
+							 <td>{{the_state.black_prison_pop_2021}}</td>
+					 </tr>
+					 <tr>
+							 <th>Hispanic</th>
+							 <td>{{the_state.hispanic_prison_pop_2021}}</td>
+					 </tr>
+					 <tr>
+							 <th>Native American</th>
+							 <td>{{the_state.native_prison_pop_2021}}</td>
+					 </tr>
+					 <tr>
+							 <th>Asian</th>
+							 <td>{{the_state.asian_prison_pop_2021}}</td>
+					 </tr>
+			</tbody>
+	</table>
+</figure>
+</div>
+
+	<div class="col-md-6">
+<figure class="highcharts-figure">
+	<div id="pie_container2"></div>
+	<p>The pie chart above and data table below depict demographic makeup in {{the_state.state}} for each racial group as a percentage of the state's total population in 2021</p>
+	<table id="pietable2">
+			<thead>
+					<tr>
+						<th></th>
+						<th>Demographic Makeup of {{the_state_state}} by Race (%) in 2021 </th>
+					</tr>
+				</thead>
+			 <tbody>
+					 <tr>
+							 <th>White</th>
+							 <td>{{the_state.white_state_pop_2021}}</td>
+					 </tr>
+					 <tr>
+							 <th>Black</th>
+							 <td>{{the_state.black_state_pop_2021}}</td>
+					 </tr>
+					 <tr>
+							 <th>Hispanic</th>
+							 <td>{{the_state.hispanic_state_pop_2021}}</td>
+					 </tr>
+					 <tr>
+							 <th>Native American</th>
+							 <td>{{the_state.native_state_pop_2021}}</td>
+					 </tr>
+					 <tr>
+							 <th>Asian</th>
+							 <td>{{the_state.asian_state_pop_2021}}</td>
+					 </tr>
+			</tbody>
+	</table>
+</figure>
+</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+<figure class="highcharts-figure">
+	<div id="pie_container3"></div>
+	<p>The pie chart above and data table below depict demographic makeup in {{the_state.state}} for each racial group as a percentage of the state's total prison population in 2010.</p>
+	<table id="pietable3">
+			<thead>
+					<tr>
+						<th></th>
+						<th>Demographic Makeup by Race (%) in 2010 </th>
+					</tr>
+				</thead>
+			 <tbody>
+				 <tr>
+						 <th>White</th>
+						 <td>{{the_state.white_pris_pop_2010}}</td>
+				 </tr>
+				 <tr>
+						 <th>Black</th>
+						 <td>{{the_state.black_prison_pop_2010}}</td>
+				 </tr>
+				 <tr>
+						 <th>Hispanic</th>
+						 <td>{{the_state.hispanic_prison_pop_2010}}</td>
+				 </tr>
+				 <tr>
+						 <th>Native American</th>
+						 <td>{{the_state.native_prison_pop_2010}}</td>
+				 </tr>
+			</tbody>
+	</table>
+</figure>
+</div>
+
+	<div class="col-md-6">
+<figure class="highcharts-figure">
+	<div id="pie_container4"></div>
+	<p>The pie chart above and data table below depict demographic makeup in {{the_state.state}} for each racial group as a percentage of the state's total population in 2010.</p>
+	<table id="pietable4">
+			<thead>
+					<tr>
+						<th></th>
+						<th>Demographic Makeup by Race (%) in 2010 </th>
+					</tr>
+				</thead>
+			 <tbody>
+				 <tr>
+						 <th>White</th>
+						 <td>{{the_state.white_state_pop_2010}}</td>
+				 </tr>
+				 <tr>
+						 <th>Black</th>
+						 <td>{{the_state.black_state_pop_2010}}</td>
+				 </tr>
+				 <tr>
+						 <th>Hispanic</th>
+						 <td>{{the_state.hispanic_state_pop_2010}}</td>
+				 </tr>
+				 <tr>
+						 <th>Native American</th>
+						 <td>{{the_state.native_state_pop_2010}}</td>
+				 </tr>
+			</tbody>
+	</table>
+</figure>
+</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+<figure class="highcharts-figure">
+	<div id="pie_container5"></div>
+	<p>The pie chart above and data table below depict demographic makeup in {{the_state.state}} for each racial group as a percentage of the state's total prison population in 2000.</p>
+	<table id="pietable5">
+			<thead>
+					<tr>
+						<th></th>
+						<th>Demographic Makeup by Race (%) in 2000 </th>
+					</tr>
+				</thead>
+			 <tbody>
+				 <tr>
+						 <th>White</th>
+						 <td>{{the_state.white_pris_pop_2000}}</td>
+				 </tr>
+				 <tr>
+						 <th>Black</th>
+						 <td>{{the_state.black_prison_pop_2000}}</td>
+				 </tr>
+				 <tr>
+						 <th>Hispanic</th>
+						 <td>{{the_state.hispanic_prison_pop_2000}}</td>
+				 </tr>
+				 <tr>
+						 <th>Native American</th>
+						 <td>{{the_state.native_prison_pop_2000}}</td>
+				 </tr>
+			</tbody>
+	</table>
+</figure>
+</div>
+
+<div class="col-md-6">
+<figure class="highcharts-figure">
+	<div id="pie_container6"></div>
+	<p>The pie chart above and data table below depict demographic makeup in {{the_state.state}} for each racial group as a percentage of the state's total population in 2000.</p>
+	<table id="pietable6">
+			<thead>
+					<tr>
+						<th></th>
+						<th>Demographic Makeup by Race (%) in 2000 </th>
+					</tr>
+				</thead>
+			 <tbody>
+				 <tr>
+						 <th>White</th>
+						 <td>{{the_state.white_state_pop_2000}}</td>
+				 </tr>
+				 <tr>
+						 <th>Black</th>
+						 <td>{{the_state.black_state_pop_2000}}</td>
+				 </tr>
+				 <tr>
+						 <th>Hispanic</th>
+						 <td>{{the_state.hispanic_state_pop_2000}}</td>
+				 </tr>
+				 <tr>
+						 <th>Native American</th>
+						 <td>{{the_state.native_state_pop_2000}}</td>
+				 </tr>
+			</tbody>
+	</table>
+</figure>
+</div>
+</div>
+
+<div class="row">
+<div class="col mx-md-auto mx-lg-auto">
+    <p id="link"><a href="{{ url_for('index') }}">Return to search page</a></p>
+</div>
+</div>
+
+		<footer>
+			<p class = "text-white">This web application was made by Eli Golde. Data is from <a href="https://bjs.ojp.gov">The Bureau of Jutice Statistics</a>, the <a href="https://www.prisonpolicy.org/graphs/statepopulations.html">Prison Policy Initiative</a>, and the <a href="https://www.census.gov/quickfacts/fact/table/WY,WI,MI,MA,MD,US/RHI825221">United States Census Bureau</a>. Reach out to me with any questions at egolde@ufl.edu.</p>
+		</footer>
+
+<script type="text/javascript">
+	{{ichart|safe}}
+</script>
+
+<script type="text/javascript">
+	{{rchart|safe}}
+</script>
+
+<script type="text/javascript">
+	{{pchart|safe}}
+</script>
+
+<script type="text/javascript">
+	{{pchart2|safe}}
+</script>
+
+<script type="text/javascript">
+	{{pchart3|safe}}
+</script>
+
+<script type="text/javascript">
+	{{pchart4|safe}}
+</script>
+
+<script type="text/javascript">
+	{{pchart5|safe}}
+</script>
+
+<script type="text/javascript">
+	{{pchart6|safe}}
+</script>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

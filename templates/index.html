@@ -1,0 +1,585 @@
+{% from 'bootstrap5/form.html' import render_form %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+
+	<title>{{ the_title }}</title>
+
+	<!-- note the special href for files in the Flask "static" folder -->
+	<!--<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">-->
+
+	{{ bootstrap.load_css() }}
+
+  <style>
+    body { background: #c4aead; }
+		p {font-size: 1.2rem;}
+  </style>
+
+</head>
+<body>
+<div id="container">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <h1 class="lead text-center mt-5 display-2">Prison Populations in the United States, 2000-2021</h1>
+
+      <p class="lead text-center pt-4 pb-4">The United States incarcerates more people than any other country in the world. As of 2021, {{totals.total_2021}} people were imprisoned, with hundreds of thousands more in jail. However, incarceration rates vary by state. Use the search bar below to find information on prison populations in each U.S. state, or continue below to find information on prison populations in the whole U.S.</p>
+
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-lg-6 mx-md-auto mx-lg-auto">
+			<div class="bg-dark text-white p-4">
+
+	<!-- add some goodies to the form - for help, see
+	     https://bootstrap-flask.readthedocs.io/en/stable/macros/#render-form
+       and
+       https://python-adv-web-apps.readthedocs.io/en/latest/flask_forms.html
+		 -->
+
+			 {{ render_form(form, action=url_for("prison_detail"), method="post") }}
+
+
+
+	   </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6 mb-4">
+
+			<p class="lead text-center pt-4 pb-4"></p>
+			<figure class="highcharts-figure">
+				<div id="icontainer"></div>
+				<p class="highcharts-description">
+					The line chart above and date table below show prison population data in the {{totals.state}} from 2000 - 2021 by total, male and female populations.
+				</p>
+
+<table id="idatatable">
+		<thead>
+				<tr>
+					<th></th>
+					<th>Total Prison Population</th>
+					<th>Male Population</th>
+					<th>Female Population</th>
+				</tr>
+			</thead>
+		 <tbody>
+				 <tr>
+						 <th>2000</th>
+						 <td>{{totals.total_2000}}</td>
+						 <td>{{totals.male_2000}}</td>
+						 <td>{{totals.female_2000}}</td>
+				 </tr>
+				 <tr>
+						 <th>2001</th>
+						 <td>{{totals.total_2001}}</td>
+						 <td>{{totals.female_2001}}</td>
+						 <td>{{totals.male_2001}}</td>
+				 </tr>
+				 <tr>
+						 <th>2002</th>
+						 <td>{{totals.total_2002}}</td>
+						 <td>{{totals.female_2002}}</td>
+						 <td>{{totals.male_2002}}</td>
+				 </tr>
+				 <tr>
+						 <th>2003</th>
+						 <td>{{totals.total_2003}}</td>
+						 <td>{{totals.male_2003}}</td>
+						 <td>{{totals.female_2003}}</td>
+				 </tr>
+				 <tr>
+						 <th>2004</th>
+						 <td>{{totals.total_2004}}</td>
+						 <td>{{totals.female_2004}}</td>
+						 <td>{{totals.male_2004}}</td>
+				 </tr>
+				 <tr>
+						 <th>2005</th>
+						 <td>{{totals.total_2005}}</td>
+						 <td>{{totals.female_2005}}</td>
+						 <td>{{totals.male_2005}}</td>
+				 </tr>
+				 <tr>
+						 <th>2006</th>
+						 <td>{{totals.total_2006}}</td>
+						 <td>{{totals.male_2006}}</td>
+						 <td>{{totals.female_2006}}</td>
+				 </tr>
+				 <tr>
+						 <th>2007</th>
+						 <td>{{totals.total_2007}}</td>
+						 <td>{{totals.male_2007}}</td>
+						 <td>{{totals.female_2007}}</td>
+				 </tr>
+				 <tr>
+						 <th>2008</th>
+						 <td>{{totals.total_2008}}</td>
+						 <td>{{totals.male_2008}}</td>
+						 <td>{{totals.female_2008}}</td>
+				 </tr>
+				 <tr>
+						 <th>2009</th>
+						 <td>{{totals.total_2009}}</td>
+						 <td>{{totals.male_2009}}</td>
+						 <td>{{totals.female_2009}}</td>
+				 </tr>
+				 <tr>
+						 <th>2010</th>
+						 <td>{{totals.total_2010}}</td>
+						 <td>{{totals.male_2010}}</td>
+						 <td>{{totals.female_2010}}</td>
+				 </tr>
+				 <tr>
+						 <th>2011</th>
+						 <td>{{totals.total_2011}}</td>
+						 <td>{{totals.male_2011}}</td>
+						 <td>{{totals.female_2011}}</td>
+				 </tr>
+				 <tr>
+						 <th>2012</th>
+						 <td>{{totals.total_2012}}</td>
+						 <td>{{totals.male_2012}}</td>
+						 <td>{{totals.female_2012}}</td>
+				 </tr>
+				 <tr>
+						 <th>2013</th>
+						 <td>{{totals.total_2013}}</td>
+						 <td>{{totals.male_2013}}</td>
+						 <td>{{totals.female_2013}}</td>
+				 </tr>
+				 <tr>
+						 <th>2014</th>
+						 <td>{{totals.total_2014}}</td>
+						 <td>{{totals.male_2014}}</td>
+						 <td>{{totals.female_2014}}</td>
+				 </tr>
+				 <tr>
+						 <th>2015</th>
+						 <td>{{totals.total_2015}}</td>
+						 <td>{{totals.male_2015}}</td>
+						 <td>{{totals.female_2015}}</td>
+				 </tr>
+				 <tr>
+						 <th>2016</th>
+						 <td>{{totals.total_2016}}</td>
+						 <td>{{totals.male_2016}}</td>
+						 <td>{{totals.female_2016}}</td>
+				 </tr>
+				 <tr>
+						 <th>2017</th>
+						 <td>{{totals.total_2017}}</td>
+						 <td>{{totals.male_2017}}</td>
+						 <td>{{totals.female_2017}}</td>
+				 </tr>
+				 <tr>
+						 <th>2018</th>
+						 <td>{{totals.total_2018}}</td>
+						 <td>{{totals.male_2018}}</td>
+						 <td>{{totals.female_2018}}</td>
+				 </tr>
+				 <tr>
+						 <th>2019</th>
+						 <td>{{totals.total_2019}}</td>
+						 <td>{{totals.male_2019}}</td>
+						 <td>{{totals.female_2019}}</td>
+				 </tr>
+				 <tr>
+						 <th>2020</th>
+						 <td>{{totals.total_2020}}</td>
+						 <td>{{totals.male_2020}}</td>
+						 <td>{{totals.female_2020}}</td>
+				 </tr>
+				 <tr>
+						 <th>2021</th>
+						 <td>{{totals.total_2021}}</td>
+						 <td>{{totals.male_2021}}</td>
+						 <td>{{totals.female_2021}}</td>
+				 </tr>
+		</tbody>
+</table>
+</figure>
+
+</div>
+
+
+<div class="col-lg-6 mb-4">
+<figure class="highcharts-figure">
+<div id="irate_container"></div>
+<p>The line chart above and data table below depict incarceration rates per 100,000 people in the {{totals.state}} from 2000 - 2021.</p>
+<table id="iratetable">
+	<thead>
+			<tr>
+				<th></th>
+				<th>Incarceration Rate per 100,000</th>
+			</tr>
+		</thead>
+	 <tbody>
+			 <tr>
+					 <th>2000</th>
+					 <td>{{totals.rate_2000}}</td>
+			 </tr>
+			 <tr>
+					 <th>2001</th>
+					 <td>{{totals.rate_2001}}</td>
+			 </tr>
+			 <tr>
+					 <th>2002</th>
+					 <td>{{totals.rate_2002}}</td>
+			 </tr>
+			 <tr>
+					 <th>2003</th>
+					 <td>{{totals.rate_2003}}</td>
+			 </tr>
+			 <tr>
+					 <th>2004</th>
+					 <td>{{totals.rate_2004}}</td>
+			 </tr>
+			 <tr>
+					 <th>2005</th>
+					 <td>{{totals.rate_2005}}</td>
+			 </tr>
+			 <tr>
+					 <th>2006</th>
+					 <td>{{totals.rate_2006}}</td>
+			 </tr>
+			 <tr>
+					 <th>2007</th>
+					 <td>{{totals.rate_2007}}</td>
+			 </tr>
+			 <tr>
+					 <th>2008</th>
+					 <td>{{totals.rate_2008}}</td>
+			 </tr>
+			 <tr>
+					 <th>2009</th>
+					 <td>{{totals.rate_2009}}</td>
+			 </tr>
+			 <tr>
+					 <th>2010</th>
+					 <td>{{totals.rate_2010}}</td>
+			 </tr>
+			 <tr>
+					 <th>2011</th>
+					 <td>{{totals.rate_2011}}</td>
+			 </tr>
+			 <tr>
+					 <th>2012</th>
+					 <td>{{totals.rate_2012}}</td>
+			 </tr>
+			 <tr>
+					 <th>2013</th>
+					 <td>{{totals.rate_2013}}</td>
+			 </tr>
+			 <tr>
+					 <th>2014</th>
+					 <td>{{totals.rate_2014}}</td>
+			 </tr>
+			 <tr>
+					 <th>2015</th>
+					 <td>{{totals.rate_2015}}</td>
+			 </tr>
+			 <tr>
+					 <th>2016</th>
+					 <td>{{totals.rate_2016}}</td>
+			 </tr>
+			 <tr>
+					 <th>2017</th>
+					 <td>{{totals.rate_2017}}</td>
+			 </tr>
+			 <tr>
+					 <th>2018</th>
+					 <td>{{totals.rate_2018}}</td>
+			 </tr>
+			 <tr>
+					 <th>2019</th>
+					 <td>{{totals.rate_2019}}</td>
+			 </tr>
+			 <tr>
+					 <th>2020</th>
+					 <td>{{totals.rate_2020}}</td>
+			 </tr>
+			 <tr>
+					 <th>2021</th>
+					 <td>{{totals.rate_2021}}</td>
+			 </tr>
+	</tbody>
+</table>
+</figure>
+
+</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6 mb-4">
+<figure class="highcharts-figure">
+<div id="ipie_container"></div>
+<p>The pie chart above and data table below depict demographic makeup in the  {{totals.state}} for each racial group as a percentage of the country's total prison population in 2021.</p>
+<table id="ipietable">
+	<thead>
+			<tr>
+				<th></th>
+				<th>Demographic Makeup of Prisons by Race (%) in 2021 </th>
+			</tr>
+		</thead>
+	 <tbody>
+			 <tr>
+					 <th>White</th>
+					 <td>{{totals.white_pris_pop_2021}}</td>
+			 </tr>
+			 <tr>
+					 <th>Black</th>
+					 <td>{{totals.black_prison_pop_2021}}</td>
+			 </tr>
+			 <tr>
+					 <th>Hispanic</th>
+					 <td>{{totals.hispanic_prison_pop_2021}}</td>
+			 </tr>
+			 <tr>
+					 <th>Native American</th>
+					 <td>{{totals.native_prison_pop_2021}}</td>
+			 </tr>
+			 <tr>
+					 <th>Asian</th>
+					 <td>{{totals.asian_prison_pop_2021}}</td>
+			 </tr>
+	</tbody>
+</table>
+</figure>
+
+</div>
+
+<div class="col-lg-6 mb-4">
+<figure class="highcharts-figure">
+<div id="ipie_container2"></div>
+<p>The pie chart above and data table below depict demographic makeup in the  {{totals.state}} for each racial group as a percentage of the country's total population in 2021.</p>
+<table id="ipietable2">
+	<thead>
+			<tr>
+				<th></th>
+				<th>Demographic Makeup of {{totals_state}} by Race (%) in 2021 </th>
+			</tr>
+		</thead>
+	 <tbody>
+			 <tr>
+					 <th>White</th>
+					 <td>{{totals.white_state_pop_2021}}</td>
+			 </tr>
+			 <tr>
+					 <th>Black</th>
+					 <td>{{totals.black_state_pop_2021}}</td>
+			 </tr>
+			 <tr>
+					 <th>Hispanic</th>
+					 <td>{{totals.hispanic_state_pop_2021}}</td>
+			 </tr>
+			 <tr>
+					 <th>Native American</th>
+					 <td>{{totals.native_state_pop_2021}}</td>
+			 </tr>
+			 <tr>
+					 <th>Asian</th>
+					 <td>{{totals.asian_state_pop_2021}}</td>
+			 </tr>
+	</tbody>
+</table>
+</figure>
+
+</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6 mb-4">
+<figure class="highcharts-figure">
+<div id="ipie_container3"></div>
+<p>The pie chart above and data table below depict demographic makeup in the  {{totals.state}} for each racial group as a percentage of the country's total prison population in 2010.</p>
+<table id="ipietable3">
+	<thead>
+			<tr>
+				<th></th>
+				<th>Demographic Makeup by Race (%) in 2010 </th>
+			</tr>
+		</thead>
+	 <tbody>
+		 <tr>
+				 <th>White</th>
+				 <td>{{totals.white_pris_pop_2010}}</td>
+		 </tr>
+		 <tr>
+				 <th>Black</th>
+				 <td>{{totals.black_prison_pop_2010}}</td>
+		 </tr>
+		 <tr>
+				 <th>Hispanic</th>
+				 <td>{{totals.hispanic_prison_pop_2010}}</td>
+		 </tr>
+		 <tr>
+				 <th>Native American</th>
+				 <td>{{totals.native_prison_pop_2010}}</td>
+		 </tr>
+	</tbody>
+</table>
+</figure>
+</div>
+
+	<div class="col-lg-6 mb-4">
+<figure class="highcharts-figure">
+<div id="ipie_container4"></div>
+<p>The pie chart above and data table below depict demographic makeup in the  {{totals.state}} for each racial group as a percentage of the country's total population in 2010.</p>
+<table id="ipietable4">
+	<thead>
+			<tr>
+				<th></th>
+				<th>Demographic Makeup by Race (%) in 2010 </th>
+			</tr>
+		</thead>
+	 <tbody>
+		 <tr>
+				 <th>White</th>
+				 <td>{{totals.white_state_pop_2010}}</td>
+		 </tr>
+		 <tr>
+				 <th>Black</th>
+				 <td>{{totals.black_state_pop_2010}}</td>
+		 </tr>
+		 <tr>
+				 <th>Hispanic</th>
+				 <td>{{totals.hispanic_state_pop_2010}}</td>
+		 </tr>
+		 <tr>
+				 <th>Native American</th>
+				 <td>{{totals.native_state_pop_2010}}</td>
+		 </tr>
+	</tbody>
+</table>
+</figure>
+</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6 mb-4">
+<figure class="highcharts-figure">
+<div id="ipie_container5"></div>
+<p>The pie chart above and data table below depict demographic makeup in the  {{totals.state}} for each racial group as a percentage of the country's total prison population in 2000.</p>
+<table id="ipietable5">
+	<thead>
+			<tr>
+				<th></th>
+				<th>Demographic Makeup by Race (%) in 2000 </th>
+			</tr>
+		</thead>
+	 <tbody>
+		 <tr>
+				 <th>White</th>
+				 <td>{{totals.white_pris_pop_2000}}</td>
+		 </tr>
+		 <tr>
+				 <th>Black</th>
+				 <td>{{totals.black_prison_pop_2000}}</td>
+		 </tr>
+		 <tr>
+				 <th>Hispanic</th>
+				 <td>{{totals.hispanic_prison_pop_2000}}</td>
+		 </tr>
+		 <tr>
+				 <th>Native American</th>
+				 <td>{{totals.native_prison_pop_2000}}</td>
+		 </tr>
+	</tbody>
+</table>
+</figure>
+</div>
+
+	<div class="col-lg-6 mb-4">
+<figure class="highcharts-figure">
+<div id="ipie_container6"></div>
+<p>The pie chart above and data table below depict demographic makeup in the  {{totals.state}} for each racial group as a percentage of the country's total population in 2000.</p>
+<table id="ipietable6">
+	<thead>
+			<tr>
+				<th></th>
+				<th>Demographic Makeup by Race (%) in 2000 </th>
+			</tr>
+		</thead>
+	 <tbody>
+		 <tr>
+				 <th>White</th>
+				 <td>{{totals.white_state_pop_2000}}</td>
+		 </tr>
+		 <tr>
+				 <th>Black</th>
+				 <td>{{totals.black_state_pop_2000}}</td>
+		 </tr>
+		 <tr>
+				 <th>Hispanic</th>
+				 <td>{{totals.hispanic_state_pop_2000}}</td>
+		 </tr>
+		 <tr>
+				 <th>Native American</th>
+				 <td>{{totals.native_state_pop_2000}}</td>
+		 </tr>
+	</tbody>
+</table>
+</figure>
+</div>
+</div>
+
+<footer>
+	<p class = "text-white">This web application was made by Eli Golde. Data is from <a href="https://bjs.ojp.gov">The Bureau of Jutice Statistics</a>, the <a href="https://www.prisonpolicy.org/graphs/statepopulations.html">Prison Policy Initiative</a>, and the <a href="https://www.census.gov/quickfacts/fact/table/WY,WI,MI,MA,MD,US/RHI825221">United States Census Bureau</a>. Reach out to me with any questions at egolde@ufl.edu.</p>
+</footer>
+
+<script type="text/javascript">
+{{ichart|safe}}
+</script>
+
+<script type="text/javascript">
+{{rchart|safe}}
+</script>
+
+<script type="text/javascript">
+{{pchart|safe}}
+</script>
+
+<script type="text/javascript">
+{{pchart2|safe}}
+</script>
+
+<script type="text/javascript">
+{{pchart3|safe}}
+</script>
+
+<script type="text/javascript">
+{{pchart4|safe}}
+</script>
+
+<script type="text/javascript">
+{{pchart5|safe}}
+</script>
+
+<script type="text/javascript">
+{{pchart6|safe}}
+</script>
+	</div>
+
+</div>
+
+</body>
+</html>

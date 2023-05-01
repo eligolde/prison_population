@@ -1,0 +1,218 @@
+/* Datatable and chart code is from https://jsfiddle.net/tce14g8f/.*/
+
+#container,
+#rate_container,
+#pie_container,
+#pie_container2,
+#pie_container3,
+#pie_container4,
+#pie_container5,
+#pie_container6,
+#icontainer,
+#irate_container,
+#ipie_container,
+#ipie_container2,
+#ipie_container3,
+#ipie_container4,
+#ipie_container5,
+#ipie_container6 {
+    height: 400px;
+}
+
+#irate_container {
+	padding-top: 3rem;
+	height: 28rem;
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+    min-width: 310px;
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+#datatable,
+#ratetable,
+#pietable,
+#pietable2,
+#pietable3,
+#pietable4,
+#pietable5,
+#pietable6,
+#idatatable,
+#iratetable,
+#ipietable,
+#ipietable2,
+#ipietable3,
+#ipietable4,
+#ipietable5,
+#ipietable6 {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+#datatable caption,
+#ratetable caption,
+#pietable caption,
+#pietable2 caption,
+#pietable3 caption,
+#pietable4 caption,
+#pietable5 caption,
+#pietable6 caption,
+#idatatable caption,
+#iratetable caption,
+#ipietable caption,
+#ipietable2 caption,
+#ipietable3 caption,
+#ipietable4 caption,
+#ipietable5 caption,
+#ipietable6 caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+#datatable th,
+#ratetable th,
+#pietable th,
+#pietable2 th,
+#pietable3 th,
+#pietable4 th,
+#pietable5 th,
+#pietable6 th,
+#idatatable th,
+#iratetable th,
+#ipietable th,
+#ipietable2 th,
+#ipietable3 th,
+#ipietable4 th,
+#ipietable5 th,
+#ipietable6 th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+#datatable td,
+#datatable th,
+#datatable caption,
+#ratetable td,
+#ratetable th,
+#ratetable caption
+#pietable td,
+#pietable th,
+#pietable caption,
+#pietable2 td,
+#pietable2 th,
+#pietable2 caption,
+#pietable3 td,
+#pietable3 th,
+#pietable3 caption,
+#pietable4 td,
+#pietable4 th,
+#pietable4 caption,
+#pietable5 td,
+#pietable5 th,
+#pietable5 caption,
+#pietable6 td,
+#pietable6 th,
+#pietable6 caption,
+#datatable td,
+#idatatable th,
+#idatatable caption,
+#iratetable td,
+#iratetable th,
+#iratetable caption
+#ipietable td,
+#ipietable th,
+#ipietable caption,
+#ipietable2 td,
+#ipietable2 th,
+#ipietable2 caption,
+#ipietable3 td,
+#ipietable3 th,
+#ipietable3 caption,
+#ipietable4 td,
+#ipietable4 th,
+#ipietable4 caption,
+#ipietable5 td,
+#ipietable5 th,
+#ipietable5 caption,
+#ipietable6 td,
+#ipietable6 th,
+#ipietable6 caption {
+    padding: 0.5em;
+}
+
+#datatable thead tr,
+#datatable tr:nth-child(even),
+#ratetable thead tr,
+#ratetable tr:nth-child(even),
+#pietable thead tr,
+#pietable tr:nth-child(even),
+#pietable2 thead tr,
+#pietable2 tr:nth-child(even),
+#pietable3 thead tr,
+#pietable3 tr:nth-child(even),
+#pietable4 thead tr,
+#pietable4 tr:nth-child(even),
+#pietable5 thead tr,
+#pietable5 tr:nth-child(even),
+#pietable6 thead tr,
+#pietable6 tr:nth-child(even),
+#idatatable thead tr,
+#idatatable tr:nth-child(even),
+#iratetable thead tr,
+#iratetable tr:nth-child(even),
+#ipietable thead tr,
+#ipietable tr:nth-child(even),
+#ipietable2 thead tr,
+#ipietable2 tr:nth-child(even),
+#ipietable3 thead tr,
+#ipietable3 tr:nth-child(even),
+#ipietable4 thead tr,
+#ipietable4 tr:nth-child(even),
+#ipietable5 thead tr,
+#ipietable5 tr:nth-child(even),
+#ipietable6 thead tr,
+#ipietable6 tr:nth-child(even){
+    background: #f8f8f8;
+}
+
+#datatable tr:hover,
+#ratetable tr:hover,
+#pietable tr:hover,
+#pietable2 tr:hover,
+#pietable3 tr:hover,
+#pietable4 tr:hover,
+#pietable5 tr:hover,
+#pietable6 tr:hover,
+#idatatable tr:hover,
+#iratetable tr:hover,
+#ipietable tr:hover,
+#ipietable2 tr:hover,
+#ipietable3 tr:hover,
+#ipietable4 tr:hover,
+#ipietable5 tr:hover,
+#ipietable6 tr:hover {
+    background: #f1f7ff;
+}
+
+footer {
+	background: #000;
+	padding: .5rem;
+	max-width: 100%
+}
+
+
+#link a {
+	color: #2e039c;
+}
+
+#link a:hover {
+	color: #f8f8f8
+}
