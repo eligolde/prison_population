@@ -7,28 +7,21 @@ from wtforms import SelectField, SubmitField
 from flask_bootstrap import Bootstrap5
 #from modules import make_ordinal
 
+import os
+# check for environment variable
+if not os.getenv("DATABASE_URL"):
+    raise RuntimeError("DATABASE_URL is not set")
+
+
 # this variable, db, will be used for all SQLAlchemy commands
 db = SQLAlchemy()
 # create the app
 app = Flask(__name__)
 
-# make sure the database username, database password and
-# database name are correct
-username = 'root'
-password = ''
-userpass = 'mysql+pymysql://' + username + ':' + password + '@'
-# keep this as is for a hosted website
-server  = '127.0.0.1'
-# CHANGE to YOUR database name, with a slash added as shown
-dbname   = '/prisoners'
-# this socket is going to be very different on a WINDOWS computer
-# try 'C:/xampp/mysql/mysql.sock'
-socket   = '?unix_socket=/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock'
-
 
 # CHANGE NOTHING BELOW
 # put them all together as a string that shows SQLAlchemy where the database is
-app.config['SQLALCHEMY_DATABASE_URI'] = userpass + server + dbname
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
